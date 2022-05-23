@@ -1,0 +1,121 @@
+package sbnz.integracija;
+
+import sbnz.integracija.workoutrecommender.model.ProcessInfo;
+import sbnz.integracija.workoutrecommender.model.InputData;
+import sbnz.integracija.workoutrecommender.model.enums.WeightStatus;
+
+rule "If age is less than or equal to 15 give advice alternative for workout"
+	agenda-group "WeightStatus"
+	no-loop
+	when
+		$inputData: InputData(age <= 15)
+		$info: ProcessInfo()
+	then
+	    System.out.println("[WeightStatus] Age is less than or equal to 15, set weight status: too young.");
+	    $info.setWeightStatus(WeightStatus.TOO_YOUNG);
+	    $info.setAdvice("You are too young for online workouts. Try to find a type of exercise you enjoy, such as dance, a certain sport, or playing outdoors with your friends.");
+	    
+		update($info);
+	end
+
+rule "If age is between 15 and 20 set weight status"
+	agenda-group "WeightStatus"
+	no-loop
+	when
+		$inputData: InputData(age > 15 && age <= 20)
+		$info: ProcessInfo()
+	then
+	    System.out.println("[WeightStatus] Age is between 15 and 20, set weight status: child and equipment: false.");
+	    $info.setWeightStatus(WeightStatus.CHILD);
+	    $info.setEquipment(false);
+	    
+		update($info);
+	end
+	
+rule "BMI weight status thinnes"
+	agenda-group "WeightStatus"
+	no-loop
+	when
+		$inputData: InputData($height: height, age > 20)
+		$info: ProcessInfo(bmi <= 17)
+	then
+	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: thinness.");
+	    double minWeight = 18.5 * ($height * $height);
+	    
+	    $info.setWeightStatus(WeightStatus.THINNESS);
+	    $info.setAdvice(String.format("General advice for you is to not exercise untill you restore and maintain your healthy weight for some time. Until then, you can take strolls or do workouts like yoga to stay healthy. Recommended minimal weight for you is: %1.2f kg.", minWeight));
+		update($info);
+	end
+	
+rule "BMI weight status mild thinnes"
+	agenda-group "WeightStatus"
+	no-loop
+	when
+		$inputData: InputData(age > 20)
+		$info: ProcessInfo(bmi > 17 && bmi <= 18.5)
+	then
+	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: mild thinness.");
+	    
+	    $info.setWeightStatus(WeightStatus.MILD_THINNESS);
+	    $info.setEquipment(false);	    
+		update($info);
+	end
+	
+rule "BMI weight status normal"
+	agenda-group "WeightStatus"
+	no-loop
+	when
+		$inputData: InputData(age > 20)
+		$info: ProcessInfo(bmi > 18.5 && bmi <= 25)
+	then
+	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: normal.");
+	    
+	    $info.setWeightStatus(WeightStatus.NORMAL);
+	    $info.setEquipment(true);	    
+		update($info);
+	end
+	
+rule "BMI weight status overweight"
+	agenda-group "WeightStatus"
+	no-loop
+	when
+		$inputData: InputData(age > 20)
+		$info: ProcessInfo(bmi > 25 && bmi <= 30)
+	then
+	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: overweight.");
+	    
+	    $info.setWeightStatus(WeightStatus.OVERWEIGHT);
+	    $info.setEquipment(true);	    
+		update($info);
+	end
+	
+rule "BMI weight status obese I"
+	agenda-group "WeightStatus"
+	no-loop
+	when
+		$inputData: InputData(age > 20)
+		$info: ProcessInfo(bmi > 30 && bmi <= 35)
+	then
+	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: obese I.");
+	    
+	    $info.setWeightStatus(WeightStatus.OBESE_I);
+	    $info.setEquipment(false);	    
+		update($info);
+	end
+	
+rule "BMI weight status obese"
+	agenda-group "WeightStatus"
+	no-loop
+	when
+		$inputData: InputData($height: height, age > 20)
+		$info: ProcessInfo(bmi > 35)
+	then
+	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: obese.");
+	    double maxWeight = 25.0 * ($height * $height);
+	    
+	    $info.setWeightStatus(WeightStatus.OBESE);
+	    $info.setAdvice(String.format("General advice for you is to restore your healthy weight by following your diet program and cutting calories intake. Meanwhile, try to stay active and do things that are easy on your joints like swimming, walking, riding a bike and some aerobic exercises. Recommended maximal weight for you is: %1.2f kg.", maxWeight));
+		update($info);
+	end
+	
+	
