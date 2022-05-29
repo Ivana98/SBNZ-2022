@@ -43,7 +43,6 @@ public class RecommendationService {
 				.equipment(false)
 				.bmi(bmi)
 				.workoutType(WorkoutType.DEFAULT)
-				.intensityRate(0)
 				.workoutIntensity(WorkoutIntensity.DEFAULT)
 				.filteredWorkouts(new ArrayList<Workout>())
 				.build();

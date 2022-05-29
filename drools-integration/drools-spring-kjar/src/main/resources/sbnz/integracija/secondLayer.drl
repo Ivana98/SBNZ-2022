@@ -1,0 +1,72 @@
+package sbnz.integracija;
+
+import sbnz.integracija.workoutrecommender.model.ProcessInfo;
+import sbnz.integracija.workoutrecommender.model.InputData;
+import sbnz.integracija.workoutrecommender.model.enums.WeightStatus;
+import sbnz.integracija.workoutrecommender.model.enums.BodyType;
+import sbnz.integracija.workoutrecommender.model.enums.WorkoutType;
+
+rule "Body type ectomorph and weight status below normal, chose strength workout type"
+	agenda-group "BodyType"
+	no-loop
+	when
+		$inputData: InputData(bodyType == BodyType.ECTOMORPH)
+		$info: ProcessInfo(weightStatus.ordinal() >= WeightStatus.NORMAL.ordinal())
+	then
+	    System.out.println("[BodyType] Body type is Ectomorph, WeightStatus <= NORMAL, set workout type STRENGTH");
+	    $info.setWorkoutType(WorkoutType.STRENGTH);
+	    
+		update($info);
+	end
+
+rule "Body type ectomorph and weight status above normal, chose both workout type"
+	agenda-group "BodyType"
+	no-loop
+	when
+		$inputData: InputData(bodyType == BodyType.ECTOMORPH)
+		$info: ProcessInfo(weightStatus.ordinal() < WeightStatus.NORMAL.ordinal())
+	then
+	    System.out.println("[BodyType] Body type is Ectomorph, WeightStatus > NORMAL, set workout type BOTH");
+	    $info.setWorkoutType(WorkoutType.BOTH);
+
+		update($info);
+	end
+
+rule "Body type endomorph and weight status above normal, chose cardio workout type"
+	agenda-group "BodyType"
+	no-loop
+	when
+		$inputData: InputData(bodyType == BodyType.ENDOMORPH)
+		$info: ProcessInfo(weightStatus.ordinal() >= WeightStatus.NORMAL.ordinal())
+	then
+	    System.out.println("[BodyType] Body type is Endomorph, WeightStatus >= NORMAL, set workout type CARDIO");
+	    $info.setWorkoutType(WorkoutType.CARDIO);
+	    
+		update($info);
+	end
+
+rule "Body type endomorph and weight status below normal, chose random workout type"
+	agenda-group "BodyType"
+	no-loop
+	when
+		$inputData: InputData(bodyType == BodyType.ENDOMORPH)
+		$info: ProcessInfo(weightStatus.ordinal() < WeightStatus.NORMAL.ordinal())
+	then
+	    System.out.println("[BodyType] Body type is Endomorph, WeightStatus < NORMAL, set workout type BOTH");
+	    $info.setWorkoutType(WorkoutType.BOTH);
+
+		update($info);
+	end
+
+rule "Body type mesomorph chose random workout type"
+	agenda-group "BodyType"
+	no-loop
+	when
+		$inputData: InputData(bodyType == BodyType.MESOMORPH)
+		$info: ProcessInfo()
+	then
+	    System.out.println("[BodyType] Body type is Mesomorph, set workout type BOTH");
+	    $info.setWorkoutType(WorkoutType.BOTH);
+
+		update($info);
+	end

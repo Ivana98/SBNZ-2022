@@ -21,7 +21,6 @@ public class ProcessInfo {
     private boolean equipment;
     private double bmi;
     private WorkoutType workoutType;
-    private int intensityRate;
     private WorkoutIntensity workoutIntensity;
     private List<Workout> filteredWorkouts;
 }

@@ -1,0 +1,34 @@
+package sbnz.integracija;
+
+import sbnz.integracija.workoutrecommender.model.ProcessInfo;
+import sbnz.integracija.workoutrecommender.model.InputData;
+import sbnz.integracija.workoutrecommender.model.enums.WorkoutIntensity;
+import sbnz.integracija.workoutrecommender.model.enums.ActivityLevel;
+import sbnz.integracija.workoutrecommender.model.enums.WeightStatus;
+
+//global sbnz.integracija.workoutrecommender.model.enums.WorkoutIntensity[][] WORKOUT_INTENSITY_MAT;
+
+rule "Set intensity rate for little active user"
+	agenda-group "WorkoutIntensity"
+	no-loop
+	when
+        $inputData: InputData($activityLevel: activityLevel.getValue())
+		$info: ProcessInfo(
+		    weightStatus.ordinal() >= WeightStatus.MILD_THINNESS.ordinal() &&
+		    weightStatus.ordinal() <= WeightStatus.OBESE_I.ordinal(),
+		    $weightStatus: weightStatus.getValue()
+		)
+	then
+	    WorkoutIntensity[][] WORKOUT_INTENSITY_MAT = {
+        //			INACTIVE; LITTLE ACTIVE; AVERAGE ACTIVE; VERY ACTIVE
+        			{ WorkoutIntensity.LOW, WorkoutIntensity.MEDIUM, WorkoutIntensity.MEDIUM, WorkoutIntensity.HIGH },  // MILD THINNES
+        			{ WorkoutIntensity.LOW, WorkoutIntensity.MEDIUM, WorkoutIntensity.HIGH, WorkoutIntensity.HIGH },	// NORMAL
+        			{ WorkoutIntensity.LOW, WorkoutIntensity.LOW, WorkoutIntensity.MEDIUM, WorkoutIntensity.MEDIUM },	// OVERWEIGHT
+        			{ WorkoutIntensity.LOW, WorkoutIntensity.LOW, WorkoutIntensity.LOW, WorkoutIntensity.LOW }			// OBESE I
+        	};
+
+	    $info.setWorkoutIntensity(WORKOUT_INTENSITY_MAT[$weightStatus][$activityLevel]);
+	    System.out.println("[WorkoutIntensity] Set workout intensity: " + WORKOUT_INTENSITY_MAT[$weightStatus][$activityLevel]);
+
+		update($info);
+	end
