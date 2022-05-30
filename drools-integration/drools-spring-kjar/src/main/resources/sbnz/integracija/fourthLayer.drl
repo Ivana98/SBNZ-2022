@@ -1,0 +1,95 @@
+package sbnz.integracija;
+
+import sbnz.integracija.workoutrecommender.model.ProcessInfo;
+import sbnz.integracija.workoutrecommender.model.InputData;
+import sbnz.integracija.workoutrecommender.model.Workout;
+
+import sbnz.integracija.workoutrecommender.model.enums.WorkoutIntensity;
+import sbnz.integracija.workoutrecommender.model.enums.WorkoutType;
+import sbnz.integracija.workoutrecommender.model.enums.Equipment;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+rule "Find suitable workouts if WorkoutType is not BOTH"
+	agenda-group "Result"
+	no-loop
+	when
+		$inputData: InputData(
+            $maxDuration: maxDuration,
+            $wantedEquipmentSet: equipmentSet,
+            $currentMood: currentMood
+        )
+		$info: ProcessInfo(
+            $equipment: equipment,
+            $workoutType: workoutType,
+            $workoutIntensity: workoutIntensity,
+            workoutType != WorkoutType.BOTH && (workoutType != WorkoutType.DEFAULT)
+        )
+
+        $allWorkoutsList: List(size > 0) from collect(Workout())
+
+        accumulate(
+            Workout(
+                $workout: this,
+                $workoutEquipmentSet: equipmentSet,
+                workoutDuration <= $maxDuration,
+                workoutIntensity == $workoutIntensity,
+                workoutType == $workoutType,
+                moodSet contains $currentMood
+            ) from $allWorkoutsList
+            and
+            List(size == 0) from collect(
+                Equipment($e: this, $e not memberOf $wantedEquipmentSet) from $workoutEquipmentSet
+            ),
+
+            $filteredWorkouts: collectList($workout)
+        )
+	then
+	    System.out.println("[Result] Find suitable workouts if WorkoutType IS NOT BOTH");
+	    $info.setFilteredWorkouts($filteredWorkouts);
+
+		update($info);
+	end
+
+
+rule "Find suitable workouts if WorkoutType is BOTH"
+	agenda-group "Result"
+	no-loop
+	when
+		$inputData: InputData(
+            $maxDuration: maxDuration,
+            $wantedEquipmentSet: equipmentSet,
+            $currentMood: currentMood
+        )
+		$info: ProcessInfo(
+            $equipment: equipment,
+            $workoutType: workoutType,
+            $workoutIntensity: workoutIntensity,
+            workoutType == WorkoutType.BOTH
+        )
+
+        $allWorkoutsList: List(size > 0) from collect(Workout())
+
+        accumulate(
+            Workout(
+                $workout: this,
+                $workoutEquipmentSet: equipmentSet,
+                workoutDuration <= $maxDuration,
+                workoutIntensity == $workoutIntensity,
+                moodSet contains $currentMood
+            ) from $allWorkoutsList
+            and
+            List(size == 0) from collect(
+                Equipment($e: this, $e not memberOf $wantedEquipmentSet) from $workoutEquipmentSet
+            ),
+
+            $filteredWorkouts: collectList($workout)
+        )
+	then
+	    System.out.println("[Result] Find suitable workouts if WorkoutType IS BOTH");
+	    $info.setFilteredWorkouts($filteredWorkouts);
+
+		update($info);
+	end

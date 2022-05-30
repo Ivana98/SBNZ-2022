@@ -12,7 +12,7 @@ public class InputDataDTO {
     private String bodyType;
     private Set<String> equipmentSet;
     private String activityLevel;
-    private int currentMood;
+    private String currentMood;
     private int age;
     private double height;
     private double weight;

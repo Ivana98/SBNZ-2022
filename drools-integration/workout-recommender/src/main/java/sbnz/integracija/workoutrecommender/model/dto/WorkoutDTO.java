@@ -15,4 +15,5 @@ public class WorkoutDTO {
     private Set<String> equipmentSet;
     private String workoutIntensity;
     private String workoutType;
+    private Set<String> moodSet;
 }

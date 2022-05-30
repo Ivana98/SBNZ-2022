@@ -27,8 +27,7 @@ rule "If age is between 15 and 20 set weight status"
 	then
 	    System.out.println("[WeightStatus] Age is between 15 and 20, set weight status: child and equipment: false.");
 	    $info.setWeightStatus(WeightStatus.CHILD);
-	    $info.setEquipment(false);
-	    
+
 		update($info);
 	end
 	
@@ -57,7 +56,6 @@ rule "BMI weight status mild thinnes"
 	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: mild thinness.");
 	    
 	    $info.setWeightStatus(WeightStatus.MILD_THINNESS);
-	    $info.setEquipment(false);	    
 		update($info);
 	end
 	
@@ -71,7 +69,6 @@ rule "BMI weight status normal"
 	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: normal.");
 	    
 	    $info.setWeightStatus(WeightStatus.NORMAL);
-	    $info.setEquipment(true);	    
 		update($info);
 	end
 	
@@ -85,7 +82,6 @@ rule "BMI weight status overweight"
 	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: overweight.");
 	    
 	    $info.setWeightStatus(WeightStatus.OVERWEIGHT);
-	    $info.setEquipment(true);	    
 		update($info);
 	end
 	
@@ -99,7 +95,6 @@ rule "BMI weight status obese I"
 	    System.out.println("[WeightStatus] Age is greater than 20, set weight status: obese I.");
 	    
 	    $info.setWeightStatus(WeightStatus.OBESE_I);
-	    $info.setEquipment(false);	    
 		update($info);
 	end
 	

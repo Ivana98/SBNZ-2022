@@ -1,6 +1,10 @@
 package sbnz.integracija.workoutrecommender.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,6 +34,7 @@ public class RecommendationService {
 		InputData data = inputDataConverter.dtoToNewEntity(dto);
 		ProcessInfo info = this.prepareInfo(data);
 		ProcessInfo result = kieSessionService.getRecommendation(data, info);
+		this.sortRecommendations(result);
 		return outputDataConverter.entityToDto(result);
 	}
 	
@@ -46,6 +51,13 @@ public class RecommendationService {
 				.workoutIntensity(WorkoutIntensity.DEFAULT)
 				.filteredWorkouts(new ArrayList<Workout>())
 				.build();
+	}
+
+	private void sortRecommendations(ProcessInfo info) {
+		List<Workout> sortedList = info.getFilteredWorkouts().stream()
+				.sorted(Comparator.comparing((Workout w) -> w.getEquipmentSet().size()).reversed())
+				.collect(Collectors.toList());
+		info.setFilteredWorkouts(sortedList);
 	}
 
 }

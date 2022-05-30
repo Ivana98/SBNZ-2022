@@ -8,7 +8,7 @@ import sbnz.integracija.workoutrecommender.model.enums.WeightStatus;
 
 //global sbnz.integracija.workoutrecommender.model.enums.WorkoutIntensity[][] WORKOUT_INTENSITY_MAT;
 
-rule "Set intensity rate for little active user"
+rule "Set workout intensity rate for user"
 	agenda-group "WorkoutIntensity"
 	no-loop
 	when
