@@ -34,7 +34,7 @@ public class RecommendationService {
 		InputData data = inputDataConverter.dtoToNewEntity(dto);
 		ProcessInfo info = this.prepareInfo(data);
 		ProcessInfo result = kieSessionService.getRecommendation(data, info);
-		this.sortRecommendations(result);
+		// this.sortRecommendations(result);
 		return outputDataConverter.entityToDto(result);
 	}
 	

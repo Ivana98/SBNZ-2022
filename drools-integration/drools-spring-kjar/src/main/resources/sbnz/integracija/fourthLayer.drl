@@ -8,13 +8,13 @@ import sbnz.integracija.workoutrecommender.model.enums.WorkoutIntensity;
 import sbnz.integracija.workoutrecommender.model.enums.WorkoutType;
 import sbnz.integracija.workoutrecommender.model.enums.Equipment;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 
 rule "Find suitable workouts if WorkoutType is not BOTH"
 	agenda-group "Result"
 	no-loop
+	salience 10
 	when
 		$inputData: InputData(
             $maxDuration: maxDuration,
@@ -57,6 +57,7 @@ rule "Find suitable workouts if WorkoutType is not BOTH"
 rule "Find suitable workouts if WorkoutType is BOTH"
 	agenda-group "Result"
 	no-loop
+	salience 10
 	when
 		$inputData: InputData(
             $maxDuration: maxDuration,
@@ -93,3 +94,22 @@ rule "Find suitable workouts if WorkoutType is BOTH"
 
 		update($info);
 	end
+
+
+rule "Sort workouts"
+    agenda-group "Result"
+    no-loop
+    when
+        $info: ProcessInfo(
+            $filteredWorkouts: filteredWorkouts,
+            $filteredWorkouts.size() > 0
+        )
+    then
+        System.out.println( "[Result] Sorting filtered workouts..." );
+        List sortedList = new ArrayList($filteredWorkouts);
+
+        sortedList.sort(Comparator.comparing((Workout w) -> w.getEquipmentSet().size()).reversed());
+
+        $info.setSortedWorkouts(sortedList);
+        update($info);
+    end

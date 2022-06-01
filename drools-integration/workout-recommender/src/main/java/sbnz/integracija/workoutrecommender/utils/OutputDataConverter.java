@@ -18,7 +18,7 @@ public class OutputDataConverter {
     	return  OutputDataDTO.builder()
                 .advice(info.getAdvice())
                 .recommendedWorkouts(
-                		info.getFilteredWorkouts().stream().map(value -> workoutConverter.entityToDto(value)).collect(Collectors.toList()))
+                		info.getSortedWorkouts().stream().map(value -> workoutConverter.entityToDto(value)).collect(Collectors.toList()))
                 .build();
     }
 

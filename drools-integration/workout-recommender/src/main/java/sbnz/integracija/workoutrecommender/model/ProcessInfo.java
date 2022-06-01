@@ -23,4 +23,5 @@ public class ProcessInfo {
     private WorkoutType workoutType;
     private WorkoutIntensity workoutIntensity;
     private List<Workout> filteredWorkouts;
+    private List<Workout> sortedWorkouts;
 }
