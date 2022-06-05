@@ -14,7 +14,6 @@ import java.util.*;
 rule "Find suitable workouts if WorkoutType is not BOTH"
 	agenda-group "Result"
 	no-loop
-	salience 10
 	when
 		$inputData: InputData(
             $maxDuration: maxDuration,
@@ -22,7 +21,6 @@ rule "Find suitable workouts if WorkoutType is not BOTH"
             $currentMood: currentMood
         )
 		$info: ProcessInfo(
-            $equipment: equipment,
             $workoutType: workoutType,
             $workoutIntensity: workoutIntensity,
             workoutType != WorkoutType.BOTH && (workoutType != WorkoutType.DEFAULT)
@@ -57,7 +55,6 @@ rule "Find suitable workouts if WorkoutType is not BOTH"
 rule "Find suitable workouts if WorkoutType is BOTH"
 	agenda-group "Result"
 	no-loop
-	salience 10
 	when
 		$inputData: InputData(
             $maxDuration: maxDuration,
@@ -65,7 +62,6 @@ rule "Find suitable workouts if WorkoutType is BOTH"
             $currentMood: currentMood
         )
 		$info: ProcessInfo(
-            $equipment: equipment,
             $workoutType: workoutType,
             $workoutIntensity: workoutIntensity,
             workoutType == WorkoutType.BOTH
@@ -95,7 +91,7 @@ rule "Find suitable workouts if WorkoutType is BOTH"
 		update($info);
 	end
 
-
+/*
 rule "Sort workouts"
     agenda-group "Result"
     no-loop
@@ -113,3 +109,4 @@ rule "Sort workouts"
         $info.setSortedWorkouts(sortedList);
         update($info);
     end
+*/

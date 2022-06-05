@@ -1,0 +1,38 @@
+package sbnz.integracija;
+
+import sbnz.integracija.workoutrecommender.model.ProcessInfo;
+import sbnz.integracija.workoutrecommender.model.InputData;
+import sbnz.integracija.workoutrecommender.model.Workout;
+
+import sbnz.integracija.workoutrecommender.model.enums.WorkoutIntensity;
+import sbnz.integracija.workoutrecommender.model.enums.WorkoutType;
+import sbnz.integracija.workoutrecommender.model.enums.Equipment;
+
+import java.util.*;
+
+
+rule "Sort workouts"
+	agenda-group "Sorting results"
+	no-loop
+	salience $equipmentSetSize
+	when
+	    $info: ProcessInfo(
+            $filteredWorkouts: filteredWorkouts,
+            $filteredWorkouts.size() > 0,
+            $sortedWorkouts: sortedWorkouts
+        )
+        Workout(
+            $workout: this,
+            $workout not memberOf $sortedWorkouts,
+            $workout memberOf $filteredWorkouts,
+            $equipmentSetSize: equipmentSet.size()
+        )
+	then
+        System.out.println();
+        System.out.println( "[Sorting results] number of filtered workouts: " +  $filteredWorkouts.size());
+        System.out.println( "[Sorting results] workout equipmentSet size: " +  $equipmentSetSize);
+        System.out.println( "[Sorting results] sortedWorkouts size: " +  ($sortedWorkouts.size()+1));
+
+        $info.addSortedWorkout($workout);
+        update($info);
+    end

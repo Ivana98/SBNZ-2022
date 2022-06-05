@@ -18,10 +18,13 @@ public class ProcessInfo {
     private WeightStatus weightStatus;
     private String advice;
     private Set<Equipment> equipmentSet;
-    private boolean equipment;
     private double bmi;
     private WorkoutType workoutType;
     private WorkoutIntensity workoutIntensity;
     private List<Workout> filteredWorkouts;
     private List<Workout> sortedWorkouts;
+
+    public void addSortedWorkout(Workout workout) {
+        this.sortedWorkouts.add(workout);
+    }
 }

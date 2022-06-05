@@ -45,11 +45,11 @@ public class RecommendationService {
 				.weightStatus(WeightStatus.DEFAULT)
 				.advice("")
 				.equipmentSet(data.getEquipmentSet())
-				.equipment(false)
 				.bmi(bmi)
 				.workoutType(WorkoutType.DEFAULT)
 				.workoutIntensity(WorkoutIntensity.DEFAULT)
 				.filteredWorkouts(new ArrayList<Workout>())
+				.sortedWorkouts(new ArrayList<Workout>())
 				.build();
 	}
 

@@ -48,6 +48,7 @@ public class KieSessionService {
 			kieSession.insert(workout);
 		}
 
+		kieSession.getAgenda().getAgendaGroup("Sorting results").setFocus();
 		kieSession.getAgenda().getAgendaGroup("Result").setFocus();
 		kieSession.getAgenda().getAgendaGroup("WorkoutIntensity").setFocus();
 		kieSession.getAgenda().getAgendaGroup("BodyType").setFocus();
