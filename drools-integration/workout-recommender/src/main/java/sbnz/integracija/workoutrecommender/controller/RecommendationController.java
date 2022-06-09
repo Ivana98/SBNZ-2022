@@ -3,6 +3,7 @@ package sbnz.integracija.workoutrecommender.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +20,9 @@ import sbnz.integracija.workoutrecommender.service.RecommendationService;
 public class RecommendationController {
 	
 	private final RecommendationService recommendationService;
-	
-	@PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @PreAuthorize("hasRole('USER')")
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OutputDataDTO> getRecommendation(@RequestBody InputDataDTO dto) {
 		OutputDataDTO recommendation = recommendationService.getRecommendation(dto);
         return new ResponseEntity<>(recommendation, HttpStatus.OK);

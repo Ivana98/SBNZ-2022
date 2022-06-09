@@ -1,22 +1,21 @@
 package sbnz.integracija.workoutrecommender.model.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Set;
-
-@Builder
 @Getter
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
-public class InputDataDTO {
-    private double maxDuration;
+@NoArgsConstructor
+public class ExerciserUpdateDTO {
+    private Long id;
+    private String name;
+    private String surname;
+
     private String bodyType;
-    private Set<String> equipmentSet;
     private String activityLevel;
-    private String currentMood;
     private int age;
     private double height;
     private double weight;
