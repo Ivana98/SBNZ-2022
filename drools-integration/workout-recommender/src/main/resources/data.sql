@@ -1,5 +1,5 @@
-INSERT INTO authority (name) VALUES ('USER');
-INSERT INTO authority (name) VALUES ('ADMIN');
+INSERT INTO authority (name) VALUES ('ROLE_USER');
+INSERT INTO authority (name) VALUES ('ROLE_ADMIN');
 
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);  --ROLE USER
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 1);  --ROLE USER
