@@ -1,0 +1,116 @@
+<mat-card class="csr-card">
+    <mat-card-header class="full-header">
+        <mat-card-title>
+            <h1> Sign up </h1>
+        </mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="myForm" (ngSubmit)="sendRequest()" *ngIf="!submitted">
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                <mat-label>Email address (username)</mat-label>
+                <input matInput formControlName="emailField">
+                <mat-error *ngIf="myForm.get('emailField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+                <mat-error *ngIf="myForm.get('emailField').errors?.email">
+                    This must be full <strong>email address</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="nameField">
+                <mat-error *ngIf="myForm.get('nameField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Surname</mat-label>
+                <input matInput formControlName="surnameField">
+                <mat-error *ngIf="myForm.get('surnameField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-radio-group color="primary" aria-labelledby="example-radio-group-label" class="example-radio-group full-width"
+                formControlName="bodyTypeField">
+                <label class="example-radio-group-label">Select body type:</label>
+
+                <mat-radio-button class="example-radio-button" *ngFor="let type of bodyTypes" [value]="type.value">
+                    {{type.viewValue}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <mat-radio-group color="primary" aria-labelledby="example-radio-group-label" class="example-radio-group full-width"
+                formControlName="activityLevelField">
+                <label class="example-radio-group-label">Select activity level:</label>
+
+                <mat-radio-button class="example-radio-button" *ngFor="let level of activityLevels"
+                    [value]="level.value">
+                    {{level.viewValue}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field class="full-width">
+                <mat-label>Age</mat-label>
+                <input matInput formControlName="ageField">
+                <mat-error *ngIf="myForm.get('ageField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Height (m)</mat-label>
+                <input matInput formControlName="heightField">
+                <mat-error *ngIf="myForm.get('heightField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Weight (kg)</mat-label>
+                <input matInput formControlName="weightField">
+                <mat-error *ngIf="myForm.get('weightField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="passwordField">
+                <mat-error *ngIf="myForm.get('passwordField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+                <mat-error *ngIf="myForm.get('passwordField').errors?.minlength">
+                    Minimal password length is <strong>3 characters</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Confirm password</mat-label>
+                <input type="password" matInput formControlName="confPasswordField">
+                <mat-error *ngIf="myForm.get('confPasswordField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+                <mat-error *ngIf="myForm.get('confPasswordField').errors?.minlength">
+                    Minimal password length is <strong>3 characters</strong>!
+                </mat-error>
+                <mat-error *ngIf="myForm.get('confPasswordField').errors?.mustMatch">
+                    Passwords <strong>don't match</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-error *ngIf="errorMsg">
+                <strong>{{errorMsg}}</strong>!
+            </mat-error>
+
+        </mat-card-content>
+        <mat-card-actions class="full-width">
+            <button mat-raised-button class="full-btn" color="primary" type="submit" [disabled]="myForm.invalid"> Sign
+                up </button>
+        </mat-card-actions>
+    </form>
+
+    <h3 class="full-width">{{successMsg}}</h3>
+</mat-card>

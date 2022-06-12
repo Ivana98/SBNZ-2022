@@ -1,5 +1,6 @@
 package sbnz.integracija.workoutrecommender.security.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -15,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import sbnz.integracija.workoutrecommender.security.model.Authority;
+import sbnz.integracija.workoutrecommender.security.model.ForAllUsersDTO;
 import sbnz.integracija.workoutrecommender.security.model.User;
 import sbnz.integracija.workoutrecommender.security.repository.UserRepository;
 
@@ -53,5 +56,16 @@ public class UserService implements UserDetailsService{
 	public User findById(Long id) throws AccessDeniedException {
 		User u = userRepository.findById(id).orElseGet(null);
 		return u;	
+	}
+
+	public ForAllUsersDTO convertUserToDTO(User user) {
+		List<Authority> authority =  (List<Authority>) user.getAuthorities();
+		return ForAllUsersDTO.builder()
+				.userId(user.getId())
+				.email(user.getEmail())
+				.name(user.getName())
+				.surname(user.getSurname())
+				.userAuthority(authority.get(0).getName())
+				.build();
 	}
 }

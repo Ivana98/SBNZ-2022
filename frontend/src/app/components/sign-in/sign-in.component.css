@@ -1,0 +1,24 @@
+.csr-card {
+    margin: auto;
+    max-width: 600px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.full-width {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.full-btn {
+    width: 100%;
+}
+
+.space3 {
+    margin-left: 3%;
+}
+
+.link-text {
+    margin-top: 3%;
+    text-align: center;
+}

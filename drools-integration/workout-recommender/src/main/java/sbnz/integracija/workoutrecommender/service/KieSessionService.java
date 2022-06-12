@@ -22,7 +22,7 @@ import java.util.*;
 public class KieSessionService {
 	
 	private final KieContainer kieContainer;
-//	private final WorkoutService workoutService;
+	private final WorkoutService workoutService;
 
 	private static final WorkoutIntensity[][] WORKOUT_INTENSITY_MAT = {
 //			INACTIVE; LITTLE ACTIVE; AVERAGE ACTIVE; VERY ACTIVE
@@ -42,8 +42,7 @@ public class KieSessionService {
 		kieSession.insert(info);
 
 		//insert all workouts
-//		List<Workout> workoutList = workoutService.findAll();
-		List<Workout> workoutList = getDummyWorkouts();
+		List<Workout> workoutList = workoutService.findAll();
 		for (Workout workout: workoutList) {
 			kieSession.insert(workout);
 		}

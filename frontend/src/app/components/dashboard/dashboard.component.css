@@ -1,0 +1,11 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.space3 {
+    margin-left: 3%;
+}
+
+#welcome {
+    margin-right: 15px;
+}
