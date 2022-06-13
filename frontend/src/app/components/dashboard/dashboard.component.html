@@ -6,6 +6,9 @@
         <div *ngIf="authority == 'ROLE_USER'">
             <button mat-raised-button color="primary" routerLink="workout-recommendation"> Workout recommendation </button>
         </div>
+        <div *ngIf="authority == 'ROLE_ADMIN'">
+            <button mat-raised-button color="primary" routerLink="workouts"> Manage workouts </button>
+        </div>
 
         <span class="spacer"></span>
 
@@ -15,12 +18,6 @@
             <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <div *ngIf="authority == 'ROLE_USER'">
-                <!--<button mat-menu-item (click)="req()">My profile</button>-->
-            </div>
-            <div *ngIf="authority == 'ROLE_ADMIN'">
-                <button mat-menu-item>Manage workouts</button>
-            </div>
             <button mat-menu-item (click)="signout()">Sign out</button>
         </mat-menu>
 

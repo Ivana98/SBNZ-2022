@@ -1,0 +1,110 @@
+<mat-card class="csr-card">
+    <mat-card-header class="full-header">
+        <div id="title">
+            <mat-card-title>
+                <h1> Add workout </h1>
+            </mat-card-title>
+        </div>
+    </mat-card-header>
+    <form [formGroup]="myForm" (ngSubmit)="sendRequest()">
+        <mat-card-content>
+
+            <mat-form-field class="full-width">
+                <mat-label>Duration</mat-label>
+                <input matInput formControlName="durationField">
+                <mat-error *ngIf="myForm.get('durationField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Workout name</mat-label>
+                <input matInput formControlName="nameField">
+                <mat-error *ngIf="myForm.get('nameField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Link</mat-label>
+                <input matInput formControlName="linkField">
+                <mat-error *ngIf="myForm.get('linkField').errors?.required">
+                    This field is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+
+            <section class="full-width">
+                <label class="example-radio-group-label">Equipment set:</label>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="equipmentField0">
+                        {{equipmentSet[0].viewValue}} </mat-checkbox>
+                </p>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="equipmentField1">
+                        {{equipmentSet[1].viewValue}} </mat-checkbox>
+                </p>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="equipmentField2">
+                        {{equipmentSet[2].viewValue}} </mat-checkbox>
+                </p>
+            </section>
+
+            <mat-radio-group color="primary" class="example-radio-group full-width"
+                formControlName="workoutIntensityField">
+                <label class="example-radio-group-label">Workout intensity:</label>
+
+                <mat-radio-button class="example-radio-button" *ngFor="let type of workoutIntensity"
+                    [value]="type.value">
+                    {{type.viewValue}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <mat-radio-group color="primary" class="example-radio-group full-width" formControlName="workoutTypeField">
+                <label class="example-radio-group-label">Workout type:</label>
+
+                <mat-radio-button class="example-radio-button" *ngFor="let type of workoutType" [value]="type.value">
+                    {{type.viewValue}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <section class="full-width">
+                <label class="example-radio-group-label">Mood set:</label>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="moodField0">
+                        {{moodSet[0].viewValue}} </mat-checkbox>
+                </p>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="moodField1">
+                        {{moodSet[1].viewValue}} </mat-checkbox>
+                </p>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="moodField2">
+                        {{moodSet[2].viewValue}} </mat-checkbox>
+                </p>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="moodField3">
+                        {{moodSet[3].viewValue}} </mat-checkbox>
+                </p>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="moodField4">
+                        {{moodSet[4].viewValue}} </mat-checkbox>
+                </p>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="moodField5">
+                        {{moodSet[5].viewValue}} </mat-checkbox>
+                </p>
+                <p>
+                    <mat-checkbox class="full-width" color="primary" formControlName="moodField6">
+                        {{moodSet[6].viewValue}} </mat-checkbox>
+                </p>
+            </section>
+
+        </mat-card-content>
+        <mat-card-actions class="full-width">
+            <button mat-raised-button class="full-btn" color="primary" [disabled]="myForm.invalid" type="submit">
+                Add workout
+            </button>
+        </mat-card-actions>
+    </form>
+
+</mat-card>

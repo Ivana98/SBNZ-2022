@@ -1,0 +1,100 @@
+.csr-card {
+    margin: auto;
+    max-width: 600px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.full-width {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.full-btn {
+    width: 100%;
+}
+
+.full-header {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.space3 {
+    margin-left: 3%;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    /*margin: 15px 0;*/
+    align-items: flex-start;
+}
+
+.example-radio-button {
+    margin: 10px;
+}
+
+.example-radio-group-label {
+    color: grey;
+}
+
+h3 {
+    color: grey;
+    font-weight: bold;
+}
+
+.example-section {
+    margin: 12px 0;
+}
+
+mat-card-title>h1 {
+    color: rgba(8, 6, 6, 0.47);
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#title {
+    width: 100%;
+}
+
+table,
+th,
+td {
+    border: none;
+}
+
+td {
+    padding-right: 30px;
+}
+
+#onerow {
+    margin-bottom: 20px;
+}
+
+#response {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    align-self: center;
+}
+
+th {
+    font-weight: bold;
+    text-align: left;
+}
+
+.table-card {
+    margin: auto;
+    max-width: 1000px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#advice {
+    padding-left: 20%;
+    padding-right: 20%;
+}

@@ -32,6 +32,8 @@ import { UserGuard } from './guard/user.guard';
 import { AdminGuard } from './guard/admin.guard';
 import { WorkoutRecommendationComponent } from './components/workout-recommendation/workout-recommendation.component';
 import { SafePipe } from './shared/safe.pipe';
+import { WorkoutsComponent } from './components/workouts/workouts.component';
+import { AddWorkoutComponent } from './components/add-workout/add-workout.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { SafePipe } from './shared/safe.pipe';
     AccessDeniedComponent,
     DashboardComponent,
     WorkoutRecommendationComponent,
-    SafePipe
+    SafePipe,
+    WorkoutsComponent,
+    AddWorkoutComponent
   ],
   imports: [
     BrowserModule,
