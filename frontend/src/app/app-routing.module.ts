@@ -6,6 +6,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { WorkoutRecommendationComponent } from './components/workout-recommendation/workout-recommendation.component';
 import { AdminGuard } from './guard/admin.guard';
 import { UserGuard } from './guard/user.guard';
 
@@ -16,7 +17,9 @@ const routes: Routes = [
     { path: 'sign-in', component: SignInComponent},
     { path: 'page-not-found', component: PageNotFoundComponent},
   ]},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent, children: [
+    { path: 'workout-recommendation', component: WorkoutRecommendationComponent},
+  ]},
   { path: '**', redirectTo: '/page-not-found' }
 ];
 

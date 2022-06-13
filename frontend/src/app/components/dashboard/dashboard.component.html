@@ -3,16 +3,20 @@
 
         <button mat-button routerLink="/dashboard">My Application</button>
 
+        <div *ngIf="authority == 'ROLE_USER'">
+            <button mat-raised-button color="primary" routerLink="workout-recommendation"> Workout recommendation </button>
+        </div>
+
         <span class="spacer"></span>
 
-        <p #welcome>Welcome, {{name}}</p>
+        <button mat-button routerLink="/dashboard">Welcome, {{name}}</button>
 
         <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
             <div *ngIf="authority == 'ROLE_USER'">
-                <button mat-menu-item (click)="req()">My profile</button>
+                <!--<button mat-menu-item (click)="req()">My profile</button>-->
             </div>
             <div *ngIf="authority == 'ROLE_ADMIN'">
                 <button mat-menu-item>Manage workouts</button>

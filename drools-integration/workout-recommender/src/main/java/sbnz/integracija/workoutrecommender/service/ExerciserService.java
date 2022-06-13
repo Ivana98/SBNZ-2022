@@ -41,4 +41,10 @@ public class ExerciserService {
         Exerciser e = exerciserConverter.updateEntity(dto, optional.get());
         exerciserRepository.save(e);
     }
+
+    public ExerciserUpdateDTO getUserInfo(Long id) {
+        Optional<Exerciser> optional =  exerciserRepository.findById(id);
+        ExerciserUpdateDTO dto = exerciserConverter.toDTO(optional.get());
+        return dto;
+    }
 }

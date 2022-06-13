@@ -33,24 +33,6 @@ export class LoginService {
         return user;
       }));
   }
-/*
-  public getMyInfo() {
-    this._apiService.get(this._getUserInfoUrl, this._apiService.headers)
-    .pipe(map((res) => {
-      console.log('Fetched user');
-      this.currentUser = res;
-    }));
-
-    .subscribe(
-      {
-        next: data => {
-          console.log(data);
-          this.setupUser(data);
-        },
-        error: error => { console.log(error); }
-      }
-    );
-  }*/
 
   setupUser(user) {
     console.log(user);
@@ -70,6 +52,10 @@ export class LoginService {
 
   public getAuthority(): string {
     return this.currentUser.userAuthority;
+  }
+
+  public getUserId(): number {
+    return this.currentUser.userId;
   }
 
 }

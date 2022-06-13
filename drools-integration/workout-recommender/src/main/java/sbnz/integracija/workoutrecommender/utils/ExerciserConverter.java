@@ -35,4 +35,17 @@ public class ExerciserConverter {
         e.setWeight(dto.getWeight());
         return e;
     }
+
+    public ExerciserUpdateDTO toDTO(Exerciser e) {
+        return ExerciserUpdateDTO.builder()
+        .id(e.getId())
+        .name(e.getName())
+        .surname(e.getSurname())
+        .bodyType(e.getBodyType().toString())
+        .activityLevel(e.getActivityLevel().toString())
+        .age(e.getAge())
+        .height(e.getHeight())
+        .weight(e.getWeight())
+        .build();
+    }
 }

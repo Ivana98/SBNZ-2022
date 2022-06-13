@@ -10,19 +10,19 @@ INSERT INTO exerciser (id, name, surname, email, enabled, password, activity_lev
 
 INSERT INTO admin (id, name, surname, email, enabled, password) VALUES (3, 'Pera', 'Petrovic', 'admin@mail.com', true, '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra');
 
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (1, 'Cardio 1', 'https://www.youtube.com/watch?v=dummy', 45.0, 'HIGH', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (2, 'Cardio 2', 'https://www.youtube.com/watch?v=dummy', 45.0, 'HIGH', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (3, 'Cardio 3', 'https://www.youtube.com/watch?v=dummy', 30.0, 'MEDIUM', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (4, 'Cardio 4', 'https://www.youtube.com/watch?v=dummy', 30.0, 'LOW', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (5, 'Cardio 5', 'https://www.youtube.com/watch?v=dummy', 45.0, 'HIGH', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (6, 'Cardio 6', 'https://www.youtube.com/watch?v=dummy', 45.0, 'MEDIUM', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (7, 'Cardio 7', 'https://www.youtube.com/watch?v=dummy', 45.0, 'HIGH', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (8, 'Cardio 8', 'https://www.youtube.com/watch?v=dummy', 45.0, 'HIGH', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (9, 'Cardio 9', 'https://www.youtube.com/watch?v=dummy', 45.0, 'MEDIUM', 'CARDIO');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (10, 'Strength 1', 'https://www.youtube.com/watch?v=dummy', 45.0, 'LOW', 'STRENGTH');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (11, 'Strength 2', 'https://www.youtube.com/watch?v=dummy', 45.0, 'MEDIUM', 'STRENGTH');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (12, 'Strength 3', 'https://www.youtube.com/watch?v=dummy', 30.0, 'MEDIUM', 'STRENGTH');
-INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (13, 'Strength 4', 'https://www.youtube.com/watch?v=dummy', 45.0, 'HIGH', 'STRENGTH');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (1, 'Cardio 1', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'HIGH', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (2, 'Cardio 2', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'HIGH', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (3, 'Cardio 3', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 30.0, 'MEDIUM', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (4, 'Cardio 4', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 30.0, 'LOW', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (5, 'Cardio 5', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'HIGH', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (6, 'Cardio 6', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'MEDIUM', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (7, 'Cardio 7', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'HIGH', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (8, 'Cardio 8', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'HIGH', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (9, 'Cardio 9', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'MEDIUM', 'CARDIO');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (10, 'Strength 1', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'LOW', 'STRENGTH');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (11, 'Strength 2', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'MEDIUM', 'STRENGTH');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (12, 'Strength 3', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 30.0, 'MEDIUM', 'STRENGTH');
+INSERT INTO workout (id, name, link, workout_duration, workout_intensity, workout_type) VALUES (13, 'Strength 4', 'https://www.youtube.com/embed/nM1ZIgMhy_4', 45.0, 'HIGH', 'STRENGTH');
 
 INSERT INTO workout_equipment (workout_id, equipment) VALUES (1, 'DUMBBELLS');
 INSERT INTO workout_equipment (workout_id, equipment) VALUES (5, 'EXPANDER');

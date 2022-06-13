@@ -30,6 +30,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { TokenInterceptor } from './interceptor/TokenInterceptor';
 import { UserGuard } from './guard/user.guard';
 import { AdminGuard } from './guard/admin.guard';
+import { WorkoutRecommendationComponent } from './components/workout-recommendation/workout-recommendation.component';
+import { SafePipe } from './shared/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { AdminGuard } from './guard/admin.guard';
     SignInComponent,
     RegisterComponent,
     AccessDeniedComponent,
-    DashboardComponent
+    DashboardComponent,
+    WorkoutRecommendationComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
